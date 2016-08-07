@@ -23,7 +23,7 @@ while true
     end
 end
 % Open .czi file and take a maximum z projection for ease in analysis
-img = openCZIFile(filenames(in).name);
+[img metadata] = openCZIFile(filenames(in).name);
 img = maxProjectZ(img);
 % Call the analyzeFile subroutine
 analyzeFile;
@@ -56,9 +56,10 @@ end
 end
 % Ignore salt and pepper noise
 A(A<2) = []
-% Ask for the pixel scaling
-in = input('Enter Pixel scaling (um/pixel)');
-scalingFactor = in^2;
+% Calculate the pixel scaling from metadata
+voxelX = double(metadata.getPixelsPhysicalSizeX(0).value(ome.units.UNITS.MICROM));
+voxelY = double(metadata.getPixelsPhysicalSizeY(0).value(ome.units.UNITS.MICROM));
+scalingFactor = voxelX*voxelY;
 % Rescale the areas in terms of square microns
 A = ceil(A*in);
 
