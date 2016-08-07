@@ -1,4 +1,4 @@
-function out = convertCZIToJPEG(filename)
+function out = convertCZIToTIFF(filename)
 img4D = openCZIFile(filename);
 img3D = maxProjectZ(img4D);
 newFilename = [filename(1:end-3) 'tiff'];

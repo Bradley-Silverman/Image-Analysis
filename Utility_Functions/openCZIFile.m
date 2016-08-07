@@ -1,6 +1,7 @@
-function out = openCZIFile(filename)
+function [out metaData] = openCZIFile(filename)
 
-% Version 3.0, can deal with either single z or single color stacks 
+% Version 3.1, can deal with either single z or single color stacks 
+% Additionally returns .czi metadata
 
 % This file takes in a filename, and using the openOME toolbox reorganizes
 % it to a 4D array [x y z C] For example a 1024x1024x10 z stacks x 2
@@ -10,6 +11,7 @@ function out = openCZIFile(filename)
 data = bfopen(filename);
 % Extract cell array of image stacks (Z/C)
 data = data{1};
+metadata = data{4};
 % Now parse strings of labels: Format is ...Z=x/N;C=y/N...
 string = data{1,2};
 % Find location in string of Z
