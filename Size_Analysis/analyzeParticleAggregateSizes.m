@@ -98,6 +98,7 @@ set(gca,'Xtick',0:(log(vec(end))/log(2))); %// adjust manually; values in log sc
 set(gca,'Xticklabel',2.^get(gca,'Xtick')); %// use labels with linear values
 % Save the data in a .mat file for later use
 in = input('Enter Sample Name')
+clear metadata
 save(sprintf('%s',in))
 titleStr = sprintf('%s based on %d observations',in,length(A));
 title(titleStr)
