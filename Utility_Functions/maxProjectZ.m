@@ -3,6 +3,9 @@ function out = maxProjectZ(img)
 % cols channels] representing the max z projection
 
 % Extract the red and green layers
+if length(size(img))==3
+    out = img;
+else
 redLayers = img(:,:,:,1);
 greenLayers = img(:,:,:,2);
 % Take the maximum value across the 3rd dimension. This results in a
