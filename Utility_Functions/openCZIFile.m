@@ -4,7 +4,7 @@ function [out metadata] = openCZIFile(filename)
 % Additionally returns .czi metadata
 
 % This file takes in a filename, and using the openOME toolbox reorganizes
-% it to a 4D array [x y z C] For example a 1024x1024x10 z stacks x 2
+% it to a 4D array [y x z C] For example a 1024x1024x10 z stacks x 2
 % channels would be [1024 1024 10 2]
 
 % Open file using the OME toolbox
