@@ -61,7 +61,7 @@ voxelX = double(metadata.getPixelsPhysicalSizeX(0).value(ome.units.UNITS.MICROM)
 voxelY = double(metadata.getPixelsPhysicalSizeY(0).value(ome.units.UNITS.MICROM));
 scalingFactor = voxelX*voxelY;
 % Rescale the areas in terms of square microns
-A = ceil(A*in);
+A = ceil(A*scalingFactor);
 
 % Tabulate the number of aggregates of each size
 table = tabulate(A);
@@ -96,6 +96,10 @@ xlabel('Number of Particles')
 ylabel('Weight weighted molecular weight distribution')
 set(gca,'Xtick',0:(log(vec(end))/log(2))); %// adjust manually; values in log scale
 set(gca,'Xticklabel',2.^get(gca,'Xtick')); %// use labels with linear values
+firstQuarter = findPercentile([numParts,normalized],.25)
+thirdQuarter = findPercentile([numParts,normalized],.75)
+median = findPercentile([numParts,normalized],0.5)
+
 % Save the data in a .mat file for later use
 in = input('Enter Sample Name')
 clear metadata

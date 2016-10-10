@@ -6,7 +6,7 @@ function formatImage(filename,lengthScaleBar)
 img = maxProjectZ(img);
 
 % Replace the red channel with magenta
-img(:,:,3) = img(:,:,1);
+ img(:,:,3) = img(:,:,1);
 
 % Now make a scale bar
 % Extract scaling from metadata
@@ -15,8 +15,8 @@ numPixels = round(lengthScaleBar./xScaling);
 
 [rows cols junk] = size(img);
 
-rightSide = cols-10;
-leftSide = cols-10-numPixels;
+rightSide = cols-80;
+leftSide = cols-80-numPixels;
 bottom = rows-40;
 top = rows-55;
 img(top:bottom,leftSide:rightSide,:) = max(max(max(img)));
