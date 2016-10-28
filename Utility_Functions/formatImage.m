@@ -6,7 +6,7 @@ function formatImage(filename,lengthScaleBar)
 img = maxProjectZ(img);
 
 % Replace the red channel with magenta
- img(:,:,3) = img(:,:,1);
+  img(:,:,3) = img(:,:,1);
 
 % Now make a scale bar
 % Extract scaling from metadata
@@ -18,10 +18,10 @@ numPixels = round(lengthScaleBar./xScaling);
 rightSide = cols-80;
 leftSide = cols-80-numPixels;
 bottom = rows-40;
-top = rows-55;
+top = rows-80;
 img(top:bottom,leftSide:rightSide,:) = max(max(max(img)));
 newfilename = [filename(1:end-3) 'tiff'];
 imwrite(img,newfilename);
 imshow(img)
-text(leftSide,top-30,'100 \mum','fontSize',16,'Color',[1 1 1],'fontWeight','bold')
+text(leftSide,top-30,[sprintf('%d',lengthScaleBar) '\mum'],'fontSize',15,'Color',[1 1 1],'fontWeight','bold')
 
